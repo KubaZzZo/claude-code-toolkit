@@ -1,6 +1,6 @@
 ---
 name: developer
-model: claude-sonnet-4-6
+model: claude-opus-4-6
 description: "Use this agent when you need to implement code changes, add new features, fix bugs, or refactor existing code. Examples: <example>user: 'Add a pagination feature to the user list API' assistant: 'I'll use the developer agent to implement pagination.' <commentary>Feature implementation requires the developer agent.</commentary></example>"
 color: green
 ---

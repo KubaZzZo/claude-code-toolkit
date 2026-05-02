@@ -11,15 +11,15 @@ description: 项目开发总控工作流，按任务复杂度分派不同角色 
 
 | 角色 | 模型 | 职责 |
 |------|------|------|
-| pm-orchestrator | haiku | 需求分析、流程调度 |
+| pm-orchestrator | opus | 需求分析、流程调度 |
 | researcher | haiku | 查代码、查文档 |
 | github-researcher | haiku | 搜索 GitHub 参考实现（本地无方案时） |
 | architect | opus | 技术方案（复杂任务） |
-| developer | sonnet | 代码实现 |
+| developer | opus | 代码实现 |
 | tdd-engineer | sonnet | 写测试（实现前）、验证覆盖率（实现后） |
 | reviewer | haiku | 代码质量审查 |
 | qa-engineer | haiku | 测试与验证 |
-| security-reviewer | opus | 安全审查（安全敏感任务） |
+| security-reviewer | sonnet | 安全审查（安全敏感任务） |
 | performance-reviewer | haiku | 性能审查（DB/循环/缓存相关代码） |
 | doc-writer | haiku | 更新文档（改动涉及公开 API 或功能时） |
 | build-error-resolver | sonnet | 诊断并修复构建错误 |

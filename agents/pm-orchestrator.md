@@ -1,6 +1,6 @@
 ---
 name: pm-orchestrator
-model: claude-haiku-4-5-20251001
+model: claude-opus-4-6
 description: "Use this agent to analyze a task and decide which agents should be involved. Examples: <exemple>user: 'I need to implement OAuth login' assistant: 'I'll use the pm-orchestrator to plan which agents are needed.' <commentary>Complex tasks need orchestration first.</commentary></example>"
 color: gray
 ---

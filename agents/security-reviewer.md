@@ -1,6 +1,6 @@
 ---
 name: security-reviewer
-model: claude-opus-4-6
+model: claude-sonnet-4-6
 description: "Use this agent when code touches auth, user input, database operations, file system, external APIs, or payment logic. Examples: <exemple>user: 'Review my new login endpoint' assistant: 'I'll use the security-reviewer agent to check for auth vulnerabilities.' <commentary>Auth code requires security review.</commentary></example>"
 color: orange
 ---
