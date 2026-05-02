@@ -22,6 +22,10 @@ description: 项目开发总控工作流，按任务复杂度分派不同角色 
 | security-reviewer | opus | 安全审查（安全敏感任务） |
 | performance-reviewer | haiku | 性能审查（DB/循环/缓存相关代码） |
 | doc-writer | haiku | 更新文档（改动涉及公开 API 或功能时） |
+| build-error-resolver | sonnet | 诊断并修复构建错误 |
+| e2e-runner | haiku | 关键用户路径端到端验证 |
+| refactor-cleaner | haiku | 死代码检测与清理 |
+| rust-reviewer | opus | Rust 代码安全与惯用性审查 |
 
 ## 调度规则
 
@@ -77,6 +81,10 @@ description: 项目开发总控工作流，按任务复杂度分派不同角色 
 | performance-reviewer | developer | changed_files | developer / pm-orchestrator | findings + verdict |
 | qa-engineer | developer + tdd-engineer(green) | changed_files + test_results | doc-writer / pm-orchestrator | tests_run + verdict |
 | doc-writer | developer | changed_files | 最终输出 | updated_files |
+| build-error-resolver | developer / CI 日志 | 错误信息 + 失败命令 | developer / pm-orchestrator | root_cause + fix_applied + verification |
+| e2e-runner | developer + tdd-engineer(green) | changed_files + 用户路径 | qa-engineer | scenarios_run + verdict |
+| refactor-cleaner | pm-orchestrator | 目标目录范围 | reviewer | removed_items + verification |
+| rust-reviewer | developer | changed_files (.rs) | reviewer / developer | findings + unsafe_blocks + verdict |
 
 ### 交接校验规则
 
