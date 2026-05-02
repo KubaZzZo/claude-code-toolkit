@@ -59,6 +59,33 @@ description: 项目开发总控工作流，按任务复杂度分派不同角色 
 
 ---
 
+## 交接契约 (Handoff Contracts)
+
+每个 Agent 明确定义输入来源、输入内容、输出内容和接收方，防止信息在流水线传递中丢失。
+
+| Agent | 输入来源 | 输入内容 | 输出给 | 输出内容 |
+|-------|----------|----------|--------|----------|
+| pm-orchestrator | 用户任务描述 | 原始需求 | 全部下游 Agent | execution_plan + 门禁清单 |
+| researcher | pm-orchestrator | task_type + 关键词 | architect / developer | relevant_files + existing_patterns + risks |
+| github-researcher | researcher | 本地找不到的模式 | architect | github_references + recommended_approach |
+| architect | researcher | relevant_files + patterns | tdd-engineer(red) / developer | approach + steps + boundaries |
+| tdd-engineer(red) | architect / researcher | approach + files | developer | 失败测试文件 + tests_written |
+| developer | architect / tdd-engineer(red) | approach + boundaries + 测试文件 | tdd-engineer(green) | changed_files + summary |
+| tdd-engineer(green) | developer | changed_files | reviewer / qa-engineer | coverage + test_results + verdict |
+| reviewer | developer + tdd-engineer(green) | changed_files + test_results | developer（如需修复）| findings + verdict |
+| security-reviewer | developer | changed_files | developer / pm-orchestrator | findings + verdict |
+| performance-reviewer | developer | changed_files | developer / pm-orchestrator | findings + verdict |
+| qa-engineer | developer + tdd-engineer(green) | changed_files + test_results | doc-writer / pm-orchestrator | tests_run + verdict |
+| doc-writer | developer | changed_files | 最终输出 | updated_files |
+
+### 交接校验规则
+
+- 每个 Agent 启动前，pm-orchestrator 检查其输入来源是否已完成且通过门禁
+- Agent 输出 JSON 中必须包含下一个 Agent 需要的所有字段
+- 字段缺失时，pm-orchestrator 要求上一阶段 Agent 补充后再进入下一阶段
+
+---
+
 ## 门禁检查 (Gate Checks)
 
 每个 Agent 完成后必须通过对应的门禁检查才能进入下一阶段。检查由 pm-orchestrator 执行。
